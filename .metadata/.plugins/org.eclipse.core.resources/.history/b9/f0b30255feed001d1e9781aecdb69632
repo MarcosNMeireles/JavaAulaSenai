@@ -1,0 +1,17 @@
+package Atividades;
+
+import javax.swing.JOptionPane;
+
+public class PecaUmNumero {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//int numero;
+		
+		String numero = JOptionPane.showInputDialog("Digite um número");
+		JOptionPane.showMessageDialog(null, numero, "o numero", 0);
+
+	}
+
+}

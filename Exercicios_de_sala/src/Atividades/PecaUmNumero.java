@@ -1,0 +1,25 @@
+package Atividades;
+
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+public class PecaUmNumero {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner leia = new Scanner (System.in);
+		
+		//int numero;
+		
+		//System.out.println("Senhor usuário digite um número:");
+		 //numero = leia.nextInt();
+		 
+		 //System.out.println("O número digitado é: "+numero);
+		
+		String numero = JOptionPane.showInputDialog("Digite um número:");
+		JOptionPane.showMessageDialog(null,"Senhor usuário o número digitado é: " +numero);
+		 leia.close();
+	}
+
+}
