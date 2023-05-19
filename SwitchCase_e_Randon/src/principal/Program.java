@@ -7,7 +7,7 @@ public class Program {
 	public static void main(String[] args) {
 		Random randon = new Random();
 		//A variavel ira receber um número aleatório entre 1 a 8
-		int opcao = randon.nextInt (7);
+		int opcao = randon.nextInt (7)+1;
 		
 		System.out.println("o número é: " +opcao);
 

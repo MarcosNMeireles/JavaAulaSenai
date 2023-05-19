@@ -30,7 +30,7 @@ public class Atividade {
 		        int dado1 = random.nextInt(6) + 1; //Incrementando "+1" para os valores gerados sejam entre 1 a 6 
 		        int dado2 = random.nextInt(6) + 1;
 		        int dado3 = random.nextInt(6) + 1;
-
+		        
 		       
 		        int soma = dado1 + dado2 + dado3;  // Calculando a soma dos números dos dados
 
@@ -38,7 +38,7 @@ public class Atividade {
 		        int bonus = 0;
 		        if (dado1 == dado2 && dado1 == dado3) {
 		            bonus = 6;
-		            System.out.println("Você é muito sortudo!");
+		            System.out.println("Você é muito sortudo! \n");
 		        } else if (dado1 == dado2 || dado1 == dado3 || dado2 == dado3) {
 		            bonus = 2;
 		        }
