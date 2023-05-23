@@ -15,37 +15,31 @@ public class ultima_de_laco {
 		System.out.print("Digite o tipo de operação (+, /, *, -): ");
 		String operacao = sc.nextLine();
 		System.out.println("Digite o número que deseja a tabuada");
-		float numero2 = sc.nextInt();
+		int numero = sc.nextInt();
+		
+		if (numero != 0) {
 
-		for (int numero = 1; numero <= 10; numero++) {
-			float resultado = 0;
+		for (int i = 1; i <= 10; i++) {
 
 			switch (operacao) {
 			case "+":
-
-				resultado = numero + numero2;
-				System.out.println(numero + " + " + numero2 + " = " + resultado);
-
+				System.out.println(numero + " + " + i + " = " + (i + numero));
 				break;
 			case "/":
-				resultado = numero / numero2;
-
-				System.out.println(numero + " / " + numero2 + " = " + resultado);
+				System.out.println((numero * i) + " / " + numero + " = " + i);
 				break;
 			case "*":
-				resultado = numero * numero2;
-				System.out.println(numero + " x " + numero2 + " = " + resultado);
+				System.out.println(numero + " x " + i + " = " + (i * numero));
 				break;
 			case "-":
-				resultado = numero - numero2;
-				System.out.println(numero + " - " + numero2 + " = " + resultado);
+				System.out.println((i + numero) + " - " + numero + " = " + i);
 				break;
 			default:
 				System.out.println("Operação inválida. Tente novamente.");
 				break;
 			}
 		}
-
+		}
 		sc.close();
 
 	}
