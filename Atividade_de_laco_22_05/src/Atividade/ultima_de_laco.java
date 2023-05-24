@@ -11,27 +11,29 @@ public class ultima_de_laco {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		char operacao = ' ';
 
-		System.out.print("Digite o tipo de operação (+, /, *, -): ");
-		String operacao = sc.nextLine();
+		while (operacao != '+' && operacao != '/' && operacao != '*' && operacao != '-') {
+			System.out.print("Digite o tipo de operação (+, /, *, -): ");
+			operacao = sc.next().charAt(0);
+		}
+
 		System.out.println("Digite o número que deseja a tabuada");
 		int numero = sc.nextInt();
-		
-		if (numero != 0) {
 
 		for (int i = 1; i <= 10; i++) {
 
 			switch (operacao) {
-			case "+":
+			case '+':
 				System.out.println(numero + " + " + i + " = " + (i + numero));
 				break;
-			case "/":
+			case '/':
 				System.out.println((numero * i) + " / " + numero + " = " + i);
 				break;
-			case "*":
+			case '*':
 				System.out.println(numero + " x " + i + " = " + (i * numero));
 				break;
-			case "-":
+			case '-':
 				System.out.println((i + numero) + " - " + numero + " = " + i);
 				break;
 			default:
@@ -39,7 +41,7 @@ public class ultima_de_laco {
 				break;
 			}
 		}
-		}
+
 		sc.close();
 
 	}
