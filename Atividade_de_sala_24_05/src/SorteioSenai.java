@@ -1,19 +1,22 @@
-import java.util.ArrayList;
-import java.util.List;
+/**Usando o random faça uma simulação de um sorteio, 
+cadastrando 10 pessoas, apenas uma pessoa será a 
+ganhadora para a proxima turma de java do senai;
+*/
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class SorteioSenai {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
-        List<String> participantes = new ArrayList<>();
+        String[] participantes = new String[10];
         
         // Cadastro dos 10 participantes
         for (int i = 0; i < 10; i++) {
             System.out.print("Digite o nome do participante " + (i + 1) + ": ");
-            String nome = scanner.nextLine();
-            participantes.add(nome);
+            String nome = sc.nextLine();
+            participantes[i] = nome;
         }
         
         // Sorteio do ganhador
@@ -21,8 +24,8 @@ public class SorteioSenai {
         int indiceGanhador = random.nextInt(10); // Gera um número aleatório entre 0 e 9
         
         // Exibição do ganhador
-        System.out.println("O ganhador da próxima turma de Java do Senai é: " + participantes.get(indiceGanhador));
+        System.out.println("O ganhador da próxima turma de Java do Senai é: " + participantes[indiceGanhador]);
         
-        scanner.close();
+        sc.close();
     }
 }

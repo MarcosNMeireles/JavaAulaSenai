@@ -1,15 +1,20 @@
+/**faça um programa que receba 50 números, 
+mostre os números pares  contidos em cada 
+posição do vetor e a sua posição (indice) do vetor;
+*/
+
 import java.util.Scanner;
 
 public class NumerosPares {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
         int[] numeros = new int[50];
         
         // Receber os 50 números
         for (int i = 0; i < 50; i++) {
             System.out.print("Digite o número " + (i + 1) + ": ");
-            numeros[i] = scanner.nextInt();
+            numeros[i] = sc.nextInt();
         }
         
         // Exibir os números pares e suas posições
@@ -20,6 +25,6 @@ public class NumerosPares {
             }
         }
         
-        scanner.close();
+        sc.close();
     }
 }
