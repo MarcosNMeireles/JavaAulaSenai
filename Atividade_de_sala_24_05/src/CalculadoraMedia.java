@@ -1,7 +1,5 @@
-
 /**Faça um programa que receba o nome do
 aluno e as 4 notas bimestrais desse aluno e mostre a media;*/
-
 
 
 import java.util.Scanner;
