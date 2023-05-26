@@ -21,7 +21,9 @@ public class SorteioSenai {
         
         // Sorteio do ganhador
         Random random = new Random();
-        int indiceGanhador = random.nextInt(10); // Gera um número aleatório entre 0 e 9
+        
+        // Gera um número aleatório entre 0 e 9
+        int indiceGanhador = random.nextInt(10); 
         
         // Exibição do ganhador
         System.out.println("O ganhador da próxima turma de Java do Senai é: " + participantes[indiceGanhador]);
