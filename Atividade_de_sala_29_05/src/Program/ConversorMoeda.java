@@ -38,6 +38,7 @@ public class ConversorMoeda {
 			System.out.println("OPÇÃO INVÁLIDA");
 			break;
 		}
+		sc.close();
 	}
 
 	// Função Conversão de DÓLAR PARA REAL
