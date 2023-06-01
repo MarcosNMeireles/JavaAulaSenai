@@ -17,22 +17,33 @@ public class Program {
 	*/
 		
 		
-		
-		  pessoa.nome = "mario andrade"; 
-		  pessoa.idade = 56; 
-		  pessoa.sexo = "masculino";
-		  
-		  pessoa2.nome = "Pernabuco Suares"; 
-		  pessoa2.idade = 81; 
-		  pessoa2.sexo =
-		  "masculino";
-		  
-		  System.out.println("O nome щ: " +pessoa.nome+ "\n sua idade щ: "
-		  +pessoa.idade+ "\n Sexo: " +pessoa.sexo); 
-		  
-		  System.out.println("O nome щ: "
-		  +pessoa2.nome+ "\n sua idade щ: " +pessoa2.idade+ "\n Sexo: " +pessoa2.sexo);
-		 
-	}
+	System.out.println("Digite o nome:");
+
+	// opчуo para receber a String, fucionou sem o "nextLine"
+	pessoa.nome = sc.nextLine();
+
+	/*
+	 * System.out.println("Digite a idade: "); 
+	 * pessoa.idade = sc.nextInt();
+	 */
+	
+	System.out.println("Ano do nacimento: ");
+	int ano = sc.nextInt();
+
+	System.out.println("Digite o sexo \n(masculino/feminino: ");
+	pessoa.sexo = sc.next().charAt(0);
+	
+	pessoa.retornaIdade(ano);
+	
+
+	pessoa2.nome = "Pernabuco Suares";
+	pessoa2.idade = 81;
+	pessoa2.sexo = 'm';
+
+	System.out.println("O nome щ: " + pessoa.nome + "\n sua idade щ: " + pessoa.idade + "\n Sexo: " + pessoa.sexo);
+
+	System.out.println("O nome щ: " + pessoa2.nome + "\n sua idade щ: " + pessoa2.idade + "\n Sexo: " + pessoa2.sexo);
+	sc.close();
+}
 
 }
