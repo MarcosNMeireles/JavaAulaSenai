@@ -7,6 +7,7 @@
     <fullyQualifiedTypeName name="java.util.Locale"/>
     <fullyQualifiedTypeName name="java.beans.DefaultPersistenceDelegate"/>
     <fullyQualifiedTypeName name="entities.AreaTerreno"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="entities.Triangulo"/>
 </qualifiedTypeNameHistroy>
