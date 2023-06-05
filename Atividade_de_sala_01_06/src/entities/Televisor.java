@@ -2,9 +2,9 @@ package entities;
 
 public class Televisor {
 
-	private int canal;
-	private int volume;
-	private boolean ligado;
+	public int canal;
+	public int volume;
+	public boolean ligado;
 
 	public Televisor() {
 // Inicializando os atributos com valores padrão
