@@ -84,5 +84,13 @@ create table produto (
 #comando para inserir um novo campo "quantidade"    
 alter table produto add quantidade int;
 
+#comando para excluir a coluna "preço"
+alter table produto drop column preço;
+
+alter table produto add preco double;
+
+#comando para alterar o nome da coluna para não perder os dados
+alter table produto rename column nome_do_produto to nomes_dos_produtos;
+
 #comando para exibir o banco criado
 desc produto;
