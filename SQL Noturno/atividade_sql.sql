@@ -94,3 +94,8 @@ alter table produto rename column nome_do_produto to nomes_dos_produtos;
 
 #comando para exibir o banco criado
 desc produto;
+
+#comando para concatenar informações no caso o "Nome" + a palavara "tem" + "idade" com a palavra "anos".
+select concat (nome," tem ",idade," anos") from pessoas;
+
+delete from pessoas where nome = "Eloá Eduarda Almada";
