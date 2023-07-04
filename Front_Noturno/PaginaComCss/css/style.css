@@ -36,3 +36,36 @@
     font-size: 20px;
     text-shadow: 1px 5px 10px #000;
 }
+
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner img{
+    width: 50%;
+}
+.historia{
+    width: auto;
+    margin:auto;
+    display: block;
+}
+.h2{
+    text-align: center;
+}
+.historia p{
+    text-align: center;
+}
+.colaboradores{
+    text-align: center;
+}
+.colaboradores .cards{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    padding: 50px 0;
+}
+.colaboradores .cards img{
+    width: 50px;
+}
