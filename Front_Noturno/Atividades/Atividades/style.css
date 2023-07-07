@@ -1,0 +1,57 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); 
+    grid-template-rows: repeat(2, auto); 
+    gap: 20px; 
+    text-align: center;
+  }
+  
+  .card {
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  .menu ul{
+    display: flex;
+    list-style: none;
+  }
+  .menu li{
+    margin-right: 10px
+  }
+  .menu a{
+    text-decoration: none;
+    padding: 20px;
+  }
+
+  .cardsCursos{
+
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); 
+    grid-template-rows: repeat(3, auto); 
+    gap: 20px; 
+  }
+
+  .cardCurso {
+    border: 1px solid rgb(185, 121, 121);
+    padding: 5px;
+ 
+  }
+  
+  .cardCurso img {
+    width: 25%;
+    height: auto;
+  }
+  .titulos{
+      text-align: center;
+  }
+  .caixaCurso{
+      align-items: center;
+  }
+
+
+
