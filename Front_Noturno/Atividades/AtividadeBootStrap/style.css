@@ -1,28 +1,33 @@
-nav ul li a{
-  font-weight: bold!important;
+nav ul li a {
+  font-weight: bold !important;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
   margin-top: -3px;
   /*color: blue!important;*/
 }
 
-.card-header{
+.card-header {
   color: #FFF;
 }
 
-
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .rotating-image {
-    animation: spin 5s linear infinite;
-  }
-  
- 
-  .carousel-control-prev,
+
+0% {
+  transform: perspective(500px) rotateY(0deg);
+}
+100% {
+  transform: perspective(500px) rotateY(360deg);
+}
+}
+
+
+
+.rotating-image {
+  animation: spin 5s linear infinite;
+}
+
+.carousel-control-prev,
 .carousel-control-next {
   width: 10%;
 }
@@ -44,7 +49,8 @@ nav ul li a:hover{
 .carousel-control-next {
   right: 51%;
 }
+
 .smaller-image {
-  max-width: 180px; /* Define a largura máxima da imagem */
-  height: auto; /* Permite que a altura seja ajustada automaticamente */
+  max-width: 180px; 
+  height: auto; 
 }

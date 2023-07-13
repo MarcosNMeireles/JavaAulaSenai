@@ -1,33 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jogo 1 - Loja de Jogos de Xbox</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Loja de Jogos de Xbox</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Página Inicial</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="quem-somos.html">Quem Somos</a>
-        </li>
-      </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo 1 - Loja de Jogos de Xbox</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Loja de Jogos de Xbox</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Página Inicial</a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="jogos.html">Jogos</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="quem-somos.html">Quem Somos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contato.html">Contato</a>
+          </li>
+        </ul>
+        <ul>
+          <div class="d-flex justify-content-end">
+            <form class="form-inline" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Procurar"
+                aria-label="Procurar"
+              />
+              <button class="btn btn-outline-light" type="submit">
+                Procurar
+              </button>
+            </form>
+          </div>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <h2 class="mt-4 text-center">Jogos de Xbox</h2>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-6 col-lg-4">
+          <div class="card mb-3">
+            <img
+              src="imagens/fifa.png"
+              class="card-img-top mx-auto d-block rotating-image"
+              alt="FIFA"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title"><a>FIFA</a></h5>
+              <p class="card-text">Otimo jogo de futebol.</p>
+              <form class="container-fluid justify-content-start">
+                <button class="btn btn-outline-success me-3" type="button">
+                  <a href="jogos.html"> Voltar aos Jogos</a>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </nav>
-  <div class="container">
-    <h2 class="mt-4">Jogo 1</h2>
-    <p>Breve descrição do Jogo 1.</p>
-    <!-- Adicione mais informações sobre o jogo aqui -->
-  </div>
-</body>
+  </body>
 </html>
