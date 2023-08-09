@@ -1,51 +1,47 @@
-// Importações necessárias
 package br.com.senai.controller;
+
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired; // Importação necessária para injetar dependências
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller; // Indica que esta classe é um controlador Spring
 import org.springframework.ui.Model; // Importação necessária para trabalhar com o Model do Spring
-import org.springframework.web.bind.annotation.GetMapping;
-import br.com.senai.model.Produto;
-import br.com.senai.repository.ProdutoRepository; // Importação do repositório
+import org.springframework.validation.BindingResult; // Importação necessária para tratar os resultados de validação
+import org.springframework.validation.Errors; // Importação necessária para trabalhar com a classe Errors
+import org.springframework.web.bind.annotation.GetMapping; // Importação para a anotação de mapeamento GET
+import org.springframework.web.bind.annotation.PostMapping; // Importação para a anotação de mapeamento POST
+import br.com.senai.model.Produto; // Importação da classe de modelo Produto
+import br.com.senai.repository.ProdutoRepository; // Importação do repositório de produtos
 
 @Controller
 public class ProdutoController {
 
-    // Injeção de dependência do repositório de produtos
-	//Isso permite que o Spring injete automaticamente o repositório no controlador.
     @Autowired 
-    private ProdutoRepository produtorepository;
+    private ProdutoRepository produtorepository; // Injeção de dependência do repositório de produtos
 
-     
-    @GetMapping("/")
-    
-	/*
-	 * Essa anotação é aplicada ao método paginaPrincipal() no controlador. Indica
-	 * que o método será acionado quando uma solicitação HTTP GET for feita para a
-	 * URL raiz do aplicativo, ou seja, a URL principal (por exemplo,
-	 * http://localhost:8080/). Neste exemplo, o método paginaPrincipal() retorna
-	 * uma string "index", que provavelmente se refere a uma View chamada index.
-	 * Isso significa que quando um usuário acessar a página inicial do aplicativo,
-	 * ele será direcionado para a View index.
-	 */
-    
+    @GetMapping("/")    
     public String paginaPrincipal() {
-        return "index";
+        return "index"; // Retorna o nome da View "index" para a página inicial
     }
 
     @GetMapping("/produto")
-	/*
-	 * Essa anotação é aplicada ao método listarProdutos() no controlador. Indica
-	 * que o método será acionado quando uma solicitação HTTP GET for feita para a
-	 * URL "/produtos" do aplicativo (por exemplo, http://localhost:8080/produtos).
-	 * Dentro do método listarProdutos(), há uma lógica para obter uma lista de
-	 * produtos do repositório e adicioná-la ao Model. A intenção provavelmente é
-	 * exibir uma lista de produtos em uma View correspondente.
-	 */
-    
     public String listarProdutos(Model model) {
-        List<Produto> produtos = produtorepository.findAll(); // Adicione findAll() para obter a lista de produtos
+        List<Produto> produtos = produtorepository.findAll(); // Obtém uma lista de produtos do repositório
         model.addAttribute("produtos", produtos); // Adiciona a lista de produtos ao Model para uso na View
-        return "produtos"; // Supondo que há uma View chamada "produtos" para exibir a lista de produtos - acessando a página
+        return "produtos"; // Retorna o nome da View "produtos" para exibir a lista de produtos
+    }
+    
+    @GetMapping("/cadastrarProduto")
+    public String paginaAdicionarProduto(Produto produto) {
+    	return "adicionar_produto"; // Retorna o nome da View "adicionar_produto" para a página de cadastro de produtos
+    }
+    
+    @PostMapping("/adicionarProduto")
+    public String adicionaProduto (@Valid Produto produto, Errors erros,
+    								BindingResult result, Model model) {
+    	if(result.hasErrors() || (null != erros && erros.getErrorCount() > 0)) {
+    		return "adicionar_produto"; // Retorna o nome da View "adicionar_produto" se houver erros de validação
+    	}
+    	produtorepository.save(produto); // Salva o novo produto no repositório
+    	return "redirect:/produto"; // Redireciona para a URL "/produto" após adicionar o produto
     }
 }
