@@ -1,29 +1,34 @@
-// Pacote onde a classe está localizada
 package br.com.senai.model;
 
-// Importações das anotações necessárias para mapeamento JPA
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-// Anotação @Entity indica que essa classe é uma entidade mapeada no banco de dados
+
 @Entity
 public class Produto {
 
-    // Anotação @Id indica que esse campo é a chave primária da entidade
     @Id
-    // Anotação @GeneratedValue especifica que o valor do ID será gerado automaticamente
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull (message = "Campo obrigatório")
+    @Size(min = 5, max = 254, message="Nome deve conter entre 5 a 254 caracteres")
     private String nome; // Nome do produto
+    
+    @Min(0)
     private int quantidade; // Quantidade disponível do produto
+    
+    @Min(0)
     private double preco; // Preço do produto
     private String descricaoProduto; // Descrição detalhada do produto
     private String urlImagem; // URL da imagem associada ao produto
 
-    // Métodos de acesso e modificação para o campo 'id'
     public Long getId() {
         return id;
     }
@@ -31,7 +36,6 @@ public class Produto {
         this.id = id;
     }
 
-    // Métodos de acesso e modificação para o campo 'nome'
     public String getNome() {
         return nome;
     }
@@ -39,7 +43,6 @@ public class Produto {
         this.nome = nome;
     }
 
-    // Métodos de acesso e modificação para o campo 'quantidade'
     public int getQuantidade() {
         return quantidade;
     }
@@ -47,7 +50,6 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    // Métodos de acesso e modificação para o campo 'preco'
     public double getPreco() {
         return preco;
     }
@@ -55,7 +57,6 @@ public class Produto {
         this.preco = preco;
     }
 
-    // Métodos de acesso e modificação para o campo 'descricaoProduto'
     public String getDescricaoProduto() {
         return descricaoProduto;
     }
