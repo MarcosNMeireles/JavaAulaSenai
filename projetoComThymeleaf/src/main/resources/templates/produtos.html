@@ -12,7 +12,7 @@
 
 	<div class="container">
 		<!-- Loop para exibir cada produto -->
-		<div class="card" th:each="produto : ${produtos}">
+		<div class="card" th:each="produto : ${produtos}" style="margin: 15px 0px; height:60%">
 			<!-- Cabeçalho do cartão com o nome do produto -->
 			<div class="card-header" th:text="${produto.nome}"></div>
 			<div class="card-body">
@@ -37,6 +37,22 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col" style="margin: 0px 0px 10px 50px">
+					<a th:href="@{/editar/{id}(id=${produto.id})}"
+						class="btn btn-primary">Editar</a>
+						
+					<a th:href="@{/excluir/{id}(id=${produto.id})}" 
+  						 class="btn btn-danger ml-2" 
+  						 onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>
+
+				</div>
+			</div>
+			
+			
+
+
 		</div>
 	</div>
 
