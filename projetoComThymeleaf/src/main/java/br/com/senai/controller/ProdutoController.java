@@ -1,4 +1,3 @@
-// Importações necessárias para as classes e recursos utilizados
 package br.com.senai.controller;
 
 import java.util.List;
@@ -14,48 +13,42 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.senai.model.Produto; // Importa a classe do modelo Produto
-import br.com.senai.repository.ProdutoRepository; // Importa a classe do repositório de Produto
+import br.com.senai.model.Produto;
+import br.com.senai.repository.ProdutoRepository;
 
-// Anotação que marca esta classe como um controlador
 @Controller
 public class ProdutoController {
 	
 	@Autowired
-	private ProdutoRepository produtoRepository; // Injeção de dependência do repositório de Produto
+	private ProdutoRepository produtoRepository;
 	
-	// Mapeamento para a página principal
 	@GetMapping("/")
 	public String paginaPrincipal() {
-		return "index"; // Retorna o nome da página a ser exibida (index.html ou similar)
+		return "index";
 	}
 	
-	// Mapeamento para listar os produtos
 	@GetMapping("/produto")
 	public String listarProdutos(Model model) {
-		List<Produto> produtos = produtoRepository.findAll(); // Obtém a lista de produtos do repositório
-		model.addAttribute("produtos", produtos); // Adiciona a lista de produtos ao modelo para exibição na página
-		return "produtos"; // Retorna o nome da página de listagem de produtos
+		List<Produto> produtos = produtoRepository.findAll();
+		model.addAttribute("produtos", produtos);
+		return "produtos";
 	}
 	
-	// Mapeamento para exibir a página de adicionar produto
 	@GetMapping("/cadastrarProduto")
 	public String paginaAdicionarProduto(Produto produto) {
-		return "adicionar_produto"; // Retorna o nome da página de adicionar produto
+		return "adicionar_produto";
 	}
 	
-	// Mapeamento para processar o formulário de adição de produto
 	@PostMapping("/adicionarProduto")
 	public String adicionaProduto(@Valid Produto produto, 
 			Errors erros, BindingResult result, Model model) {
 		if(result.hasErrors() || (null != erros && erros.getErrorCount() > 0)) {
-			return "adicionar_produto"; // Retorna a página de adicionar produto caso haja erros
+			return "adicionar_produto";
 		}
-		produtoRepository.save(produto); // Salva o novo produto no repositório
-		return "redirect:/produto"; // Redireciona para a página de listagem de produtos
+		produtoRepository.save(produto);
+		return "redirect:/produto";
 	}
 	
-	// Mapeamento para exibir a página de editar produto
 	@GetMapping("/editar/{id}")
 	public String paginaAtualizarProduto(
 			@PathVariable("id") long id, Model model) {
@@ -63,26 +56,34 @@ public class ProdutoController {
 				.orElseThrow(() -> 
 				new IllegalArgumentException("Identificador do produto é inválido" + id));
 		
-		model.addAttribute("produto", produto); // Adiciona o produto ao modelo para edição
-		return "editar_produto"; // Retorna o nome da página de edição de produto
+		model.addAttribute("produto", produto);
+		return "editar_produto";
 	}
 	
-	// Mapeamento para processar o formulário de atualização de produto
 	@PostMapping("/atualizar/{id}")
 	public String atualizarProduto(@PathVariable("id") long id,
 			@Valid Produto produto, BindingResult result,
 			Model model) {
 		if(result.hasErrors()) {
 			produto.setId(id);
-			return "editar_produto"; // Retorna a página de edição de produto caso haja erros
+			return "editar_produto";
 		}
-		produtoRepository.save(produto); // Atualiza o produto no repositório
-		return "redirect:/produto"; // Redireciona para a página de listagem de produtos
+		produtoRepository.save(produto);
+		return "redirect:/produto";
 	}
 	
-	@GetMapping("/excluir/{id}")
-	public String excluirProduto(@PathVariable Long id) {
-	    produtoRepository.deleteById(id);
-	    return "redirect:/produto"; // Redirecionar para a página de listagem após a exclusão
+	@GetMapping("/delete/{id}")
+	public String deletarProduto(
+			@PathVariable("id") long id, Model model) {
+		Produto produto = produtoRepository.findById(id)
+				.orElseThrow(()-> 
+				new IllegalArgumentException("Identificador do produto inválido" + id));
+		produtoRepository.delete(produto);
+		return "redirect:/produto";
 	}
+	
+	
+	
+	
+
 }

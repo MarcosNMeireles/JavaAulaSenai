@@ -92,7 +92,6 @@ INDEX VERSION 1.131+C:\Users\Aluno Noite\Documents\aulas_java_noturno\.metadata\
 752259322.index
 729052071.index
 1757438070.index
-2569594229.index
 2075034670.index
 2733594938.index
 711718703.index
