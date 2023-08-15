@@ -81,9 +81,4 @@ public class ProdutoController {
 		produtoRepository.delete(produto);
 		return "redirect:/produto";
 	}
-	
-	
-	
-	
-
 }
