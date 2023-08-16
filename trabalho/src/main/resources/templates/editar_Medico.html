@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Editar Medico</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	 
+        <a class="navbar-brand" href="/"> <img
+					src="https://cdn-icons-png.flaticon.com/512/5974/5974907.png"
+					style="width: 26px">
+		</a>
+ 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Pagina Inicial</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/cadastrar_Medico}">Cadastrar Medico</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Cadastrar Novo Medico</h1>
+
+		<form action="#" th:action="@{/editar-medico/{id}(id=${medico.id})}"
+			th:object="${medico}" class="needs-validation" method="POST">
+			
+			<div class="form-group">
+				<label for="nome">
+					CRM:
+				</label>
+				 
+				<type="text" class="form-control" 
+					id="CRM" name="CRM" th:value="${medico.crm}" required>
+			</div>
+			
+			<div class="form-group">
+				<label for="nome">
+					Nome:
+				</label> 
+				
+				<type="text" class="form-control" 
+					id="nome" name="nome" th:value="${medico.nome}" required>
+			</div>
+			
+			<div class="form-group">
+				<label for="email">
+					Email:
+				</label> 
+				<type="text" class="form-control" 
+					id="email" name="email" th:value="${medico.email}" required>
+			</div>
+
+			<div class="form-group">
+				<label for="telefone">
+					Telefone:
+				</label> 
+				<type="text" class="form-control" 
+					id="telefone" name="telefone" th:value="${medico.telefone}" required>
+			</div>
+ 
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+       
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
