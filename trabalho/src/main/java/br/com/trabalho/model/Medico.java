@@ -19,17 +19,20 @@ public class Medico {
     private String crm;
     private String email;
     private String telefone;
+    private String especialidade;
     
 
  
     public Medico() {
     }
 
-    public Medico(String nome, String crm, String email, String telefone) {
+    public Medico(String nome, String crm, String especialidade, String email, String telefone) {
         this.nome = nome;
         this.crm = crm;
+        this.especialidade = especialidade;
         this.email = email;
         this.telefone = telefone;
+        
     }
 
   
@@ -56,6 +59,14 @@ public class Medico {
     public void setCrm(String crm) {
         this.crm = crm;
     }
+    
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
 
     public String getEmail() {
         return email;
@@ -81,6 +92,7 @@ public class Medico {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", crm='" + crm + '\'' +
+                ", especialidade='" + especialidade + '\'' +
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 '}';

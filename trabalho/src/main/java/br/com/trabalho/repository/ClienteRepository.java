@@ -8,9 +8,9 @@ import br.com.trabalho.model.Cliente;
 
 
 
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-	Cliente save(Cliente cliente);
 
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+    List<Cliente> findByNomeContaining(String nome);	
     List<Cliente> findAll();
 
 }

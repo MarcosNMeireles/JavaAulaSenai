@@ -42,30 +42,42 @@ public class MedicoController {
         return "redirect:/"; 
     }
 
-    @GetMapping("/consultarMedico")
-    public String consultarMedicos(Model model) {
-        model.addAttribute("medicos", medicoRepository.findAll());
-        return "consultarMedico";
-    }
 
-    @GetMapping("/editar-medico/{id}")
-    public String paginaEditarMedico(@PathVariable("id") long id, Model model) {
-        Medico medico = medicoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Identificador do medico  invalido: " + id));
-        model.addAttribute("medico", medico); 
-        return "editar_Medico"; 
-    }
+   @GetMapping("/consultarMedico")
+   public String listarMedicos(Model model) {
+       model.addAttribute("medicos", medicoRepository.findAll());
+       return "consultarMedico";
+   }
 
-//    @PostMapping("/editar-medico/{id}")
-//    public String editarMedico(@PathVariable("id") long id, @ModelAttribute @Valid Medico medico, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "editar_Medico"; 
-//        }
-//        medico.setId(id); 
-//        medicoRepository.save(medico);
-//        return "redirect:/consultarMedico"; 
-//    }
+   @GetMapping("/ver-medico/{id}")
+   public String verMedico(@PathVariable("id") Long id, Model model) {
+       Medico medico = medicoRepository.findById(id)
+               .orElseThrow(() -> new IllegalArgumentException("Identificador do médico inválido: " + id));
 
+       model.addAttribute("medico", medico);
+       return "ver_Medico"; // Substitua "ver_Medico" pelo nome da página que irá exibir os detalhes do médico
+   }  
+    
+   @GetMapping("/editar-medico/{id}")
+   public String exibirPaginaEditarMedico(@PathVariable Long id, Model model) {
+       Medico medico = medicoRepository.findById(id)
+               .orElseThrow(() -> new IllegalArgumentException("Identificador do médico inválido: " + id));
+
+       model.addAttribute("medico", medico);
+       return "editar_Medico"; // Retorna o nome da página HTML para exibir
+   }
+
+   @PostMapping("/editar-medico/{id}")
+   public String editarMedico(@PathVariable Long id, @ModelAttribute @Valid Medico medicoAtualizado, BindingResult result) {
+       if (result.hasErrors()) {
+           return "editar_Medico"; // Retorna para a página de edição em caso de erros
+       }
+
+       medicoAtualizado.setId(id); // Define corretamente o ID do médico atualizado
+       medicoRepository.save(medicoAtualizado);
+       return "redirect:/consultarMedico"; // Redireciona para a página de consulta após a edição
+   }
+    
 
     @GetMapping("/removerMedico/{id}")
     public String removerMedico(@PathVariable("id") long id, Model model) {

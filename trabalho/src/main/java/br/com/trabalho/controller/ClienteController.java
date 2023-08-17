@@ -19,66 +19,64 @@ import br.com.trabalho.repository.ClienteRepository;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository; // Injeção de dependência do repositório de clientes
+    private ClienteRepository clienteRepository; 
 
-    // Mapeamento para a página inicial
+    
     @GetMapping("/cliente")
     public String paginaPrincipal() {
         return "/";
     }
 
-    // Mapeamento para a página de cadastro de cliente
+   
     @GetMapping("/cadastrar_Cliente")
     public String paginaCadastrarCliente(Model model) {
-        Cliente cliente = new Cliente(); // Cria uma instância de Cliente
-        model.addAttribute("cliente", cliente); // Adiciona o cliente ao modelo para a página
-        return "cadastrar_Cliente"; // Retorna o nome da página de cadastro de cliente
+        Cliente cliente = new Cliente(); 
+        model.addAttribute("cliente", cliente); 
+        return "cadastrar_Cliente"; 
     }
 
-    // Ação de cadastrar um cliente
     @PostMapping("/cadastrar_Cliente")
     public String cadastrarCliente(@ModelAttribute @Valid Cliente cliente, BindingResult result) {
-        if (result.hasErrors()) { // Verifica se há erros de validação
-            return "cadastrar_Cliente"; // Retorna à página de cadastro se houver erros
+        if (result.hasErrors()) { 
+            return "cadastrar_Cliente"; 
         }
-        clienteRepository.save(cliente); // Salva o cliente no repositório
-        return "redirect:/"; // Redireciona para a página inicial
+        clienteRepository.save(cliente); 
+        return "redirect:/"; 
     }
 
-    // Mapeamento para a página de consulta de clientes
+    
     @GetMapping("/consultarCliente")
     public String consultarClientes(Model model) {
-        model.addAttribute("clientes", clienteRepository.findAll()); // Adiciona a lista de clientes ao modelo
-        return "consultarCliente"; // Retorna o nome da página de consulta de clientes
+        model.addAttribute("clientes", clienteRepository.findAll()); 
+        return "consultarCliente"; 
     }
 
-    // Mapeamento para a página de edição de um cliente específico
     @GetMapping("/editar/{id}")
-    public String paginaAtualizarCliente(@PathVariable("id") long id, 
-    		Model model) {
+    public String paginaAtualizarCliente(@PathVariable("id") long id, Model model) {
         Cliente cliente = clienteRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Identificador do cliente é inválido: " + id));
-        model.addAttribute("clientes", cliente); // Adiciona o cliente ao modelo para a página de edição
-        return "editarCliente"; // Retorna o nome da página de edição de cliente
+                .orElseThrow(() -> new IllegalArgumentException("Identificador do cliente � inv�lido: " + id));
+        model.addAttribute("cliente", cliente); 
+        return "editarCliente"; 
     }
 
-    // Ação de deletar um cliente
+    
+    
     @GetMapping("/delete/{id}")
     public String deletarCliente(@PathVariable("id") long id, Model model) {
         Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Identificador do cliente inválido" + id));
-        clienteRepository.delete(cliente); // Deleta o cliente do repositório
-        return "redirect:/consultarCliente"; // Redireciona para a página de consulta de clientes
+        clienteRepository.delete(cliente); 
+        return "redirect:/consultarCliente"; 
     }
 
-    // Ação de salvar um cliente (usado no cadastro e na edição)
+   
     @PostMapping("/salvar-cliente")
     public String salvarCliente(@ModelAttribute @Valid Cliente cliente, BindingResult result) {
-        if (result.hasErrors()) { // Verifica se há erros de validação
-            return "cadastrar_Cliente"; // Retorna à página de cadastro se houver erros
+        if (result.hasErrors()) { 
+            return "cadastrar_Cliente"; 
         }
-        clienteRepository.save(cliente); // Salva o cliente no repositório
-        return "redirect:/"; // Redireciona para a página inicial
+        clienteRepository.save(cliente); 
+        return "redirect:/"; 
     }
 
 

@@ -10,7 +10,8 @@ import br.com.trabalho.model.Medico;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 	//Medico save(Medico medico);
-
+	List<Medico> findByEspecialidade(String especialidade);
+    List<Medico> findByNomeContaining(String nome);	
     List<Medico> findAll();
 
 }
