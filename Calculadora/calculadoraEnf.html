@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Gotejamento e Concentração</title>
+</head>
+<body>
+    <h1>Calculadora de Gotejamento e Concentração</h1>
+    <form>
+        <label for="opcao">Opção:</label>
+        <select id="opcao" onchange="mostrarCampos()">
+            <option value="escolha">Escolha a opção</option>
+            <option value="gotas">Gotas</option>
+            <option value="microgotas">Microgotas</option>
+            <option value="concentracao">Concentração</option>
+        </select><br><br>
+        <div id="gotasMicrogotas" style="display: none;">
+            <label for="volume">Volume (mL):</label>
+            <input type="number" id="volume" name="volume"><br><br>
+            <label for="tempo">Tempo:</label>
+            <input type="number" id="tempo" name="tempo">
+            <select id="unidadeTempo">
+                <option value="minutos">Minutos</option>
+                <option value="horas">Horas</option>
+            </select><br><br>
+        </div>
+        <div id="concentracao" style="display: none;">
+            <label for="c">C (Concentração final desejada):</label>
+            <input type="number" id="c" name="c"><br><br>
+            <label for="v">V (Volume final desejado - mL):</label>
+            <input type="number" id="v" name="v"><br><br>
+            <label for="c1">C1 (Concentração da primeira solução):</label>
+            <input type="number" id="c1" name="c1"><br><br>
+            <label for="v1">V1 (Volume da primeira solução - mL):</label>
+            <input type="number" id="v1" name="v1"><br><br>
+            <label for="c2">C2 (Concentração da segunda solução):</label>
+            <input type="number" id="c2" name="c2"><br><br>
+        </div>
+        <button type="button" id="calcularButton" onclick="calcular()">Calcular</button>
+        <button type="button" id="limparButton" onclick="limparCampos()">Limpar Campos</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        function mostrarCampos() {
+            const opcao = document.getElementById("opcao").value;
+            const gotasMicrogotas = document.getElementById("gotasMicrogotas");
+            const concentracao = document.getElementById("concentracao");
+
+            if (opcao === "gotas" || opcao === "microgotas") {
+                gotasMicrogotas.style.display = "block";
+                concentracao.style.display = "none";
+            } else if (opcao === "concentracao") {
+                concentracao.style.display = "block";
+                gotasMicrogotas.style.display = "none";
+            } else {
+                gotasMicrogotas.style.display = "none";
+                concentracao.style.display = "none";
+            }
+        }
+
+        function calcular() {
+            const opcao = document.getElementById("opcao").value;
+
+            if (opcao === "gotas" || opcao === "microgotas") {
+                calcularGotejamento();
+            } else if (opcao === "concentracao") {
+                calcularConcentracao();
+            }
+        }
+
+        function calcularGotejamento() {
+            const volume = parseFloat(document.getElementById("volume").value);
+            const tempo = parseFloat(document.getElementById("tempo").value);
+            const unidadeTempo = document.getElementById("unidadeTempo").value;
+            const resultadoDiv = document.getElementById("resultado");
+            let tempoEmHoras = tempo;
+            let volumeLitro = volume;
+
+            if (!isNaN(volume) && !isNaN(tempo) && tempo > 0) {
+                if (unidadeTempo === "horas") {
+                    tempoEmHoras *= 3;
+                }
+                if (unidadeTempo === "minutos") {
+                    volumeLitro *= 20;
+                }
+                let taxaGotejamento = volumeLitro / tempoEmHoras;
+
+                switch (opcao) {
+                    case "microgotas":
+                        // Arredondar para baixo se a parte decimal for menor ou igual a 0.4,
+                        // senão arredondar para cima
+                        taxaGotejamento = (taxaGotejamento % 1 <= 0.4) ? Math.floor(taxaGotejamento) : Math.ceil(taxaGotejamento);
+                        taxaGotejamento *= 3;
+                        break;
+                    // Caso padrão para opção "gotas"
+                    default:
+                        break;
+                }
+                // Arredondar para baixo se a parte decimal for menor ou igual a 0.4,
+                // senão arredondar para cima
+                const taxaArredondada = (taxaGotejamento % 1 <= 0.4) ? Math.floor(taxaGotejamento) : Math.ceil(taxaGotejamento);
+                const resultadoTexto = `Taxa de Gotejamento Arredondada: ${taxaArredondada} gotas por minuto`;
+                resultadoDiv.innerHTML = resultadoTexto;
+            } else {
+                resultadoDiv.innerHTML = "Preencha valores válidos para Volume e Tempo.";
+            }
+        }
+
+        function calcularConcentracao() {
+            const c = parseFloat(document.getElementById("c").value);
+            const v = parseFloat(document.getElementById("v").value);
+            const c1 = parseFloat(document.getElementById("c1").value);
+            const v1 = parseFloat(document.getElementById("v1").value);
+            const c2 = parseFloat(document.getElementById("c2").value);
+            const x = (c * v - c1 * v1) / (c2 - c1);
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = `Valor de x (V2 - Volume da segunda solução): ${x.toFixed(2)} mL`;
+        }
+
+        function limparCampos() {
+            document.getElementById("volume").value = "";
+            document.getElementById("tempo").value = "";
+            document.getElementById("c").value = "";
+            document.getElementById("v").value = "";
+            document.getElementById("c1").value = "";
+            document.getElementById("v1").value = "";
+            document.getElementById("c2").value = "";
+            document.getElementById("resultado").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

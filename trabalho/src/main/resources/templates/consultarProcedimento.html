@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Consultar Procedimento</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	 
+        <a class="navbar-brand" href="/"> <img
+					src="https://cdn-icons-png.flaticon.com/512/5974/5974907.png"
+					style="width: 26px">
+		</a>
+ 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Página Inicial</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/cadastrarProcedimento}">Cadastrar Procedimento</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Consultar Procedimento</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome do Procedimento</th>
+                    <th>Descrição</th>
+                    <th>Alterar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr th:each="procedimento : ${procedimentos}">
+                    <td th:text="${procedimento.nome}"></td>
+                    <td th:text="${procedimento.descricao}"></td>
+                    <td>
+                        <a th:href="@{/editarProcedimento/{id}(id=${procedimento.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    </td>
+                    <td>
+                    	<a th:href="@{/excluirProcedimento/{id}(id=${procedimento.id})}" class="btn btn-danger btn-sm">Remover</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous">
+	</script>
+</body>
+</html>
