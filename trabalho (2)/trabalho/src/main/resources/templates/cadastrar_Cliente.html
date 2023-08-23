@@ -107,8 +107,9 @@
 
                             <div class="form-group">
                                 <label for="cep">CEP:</label>
-                                <input type="text" class="form-control" id="cep" name="cep" required
-                                    placeholder="11.111-111">
+                                <input type="text" class="form-control" maxlength="9" onkeyup="handleZipCode(event)"
+                                		id="cep" name="cep" required
+                                    	placeholder="11.111-111">
                             </div>
 
                             <div class="form-group">
@@ -119,8 +120,8 @@
 
                             <div class="form-group">
                                 <label for="telefone">Telefone:</label>
-                                <input type="text" class="form-control" id="telefone" name="telefone" required
-                                    placeholder="(ddd)x.xxxx-xxxx">
+                                <input type="text" class="form-control" maxlength="15" onkeyup="handlePhone(event)"
+                                	id="telefone" name="telefone" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -134,8 +135,35 @@
             crossorigin="anonymous"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+		
+		<script>	
+			const handleZipCode = (event) => {
+			  let input = event.target;
+			  input.value = zipCodeMask(input.value);
+			};
 
+			const zipCodeMask = (value) => {
+			  if (!value) return "";
+			  value = value.replace(/\D/g,'');
+			  value = value.replace(/^(\d{2})(\d{3})(\d{3})$/, '$1.$2-$3');
+			  return value;
+			};
+			
+			const handlePhone = (event) => {
+				  let input = event.target
+				  input.value = phoneMask(input.value)
+				}
 
+			const phoneMask = (value) => {
+				  if (!value) return ""
+				  value = value.replace(/\D/g,'')
+				  value = value.replace(/(\d{2})(\d)/,"($1) $2")
+				  value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+				  return value
+				}
+			
+
+		</script>
 </body>
 
 </html>

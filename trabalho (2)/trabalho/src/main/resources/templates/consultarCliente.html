@@ -67,16 +67,16 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card" style="background-color: rgba(106,176,254, 0.8);">
                     <div class="card-header">
                         <h3 class="text-center">PACIENTES</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgba(255,255,255, 0.5);">
                     	<div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
+                            <thead >
                                 <tr>
-                                    <th>ID</th>
+                                    
                                     <th>Nome</th>
                                     <th>Data de Nascimento</th>
                                     <th>Endereco</th>
@@ -89,7 +89,7 @@
                             </thead>
                             <tbody>
 								<tr th:each="cliente : ${clientes}">
-									<td th:text="${cliente.id}"></td>
+									
 									<td th:text="${cliente.nome}"></td>
 									<td th:text="${cliente.dataNascimento}"></td>
 									<td th:text="${cliente.endereco}"></td>
