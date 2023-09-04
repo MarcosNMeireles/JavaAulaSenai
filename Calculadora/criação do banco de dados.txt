@@ -1,0 +1,96 @@
+create database banco_trabalho;
+use banco_trabalho;
+
+
+CREATE TABLE cliente (
+  id INT AUTO_INCREMENT,
+  nome VARCHAR(255),
+  endereco VARCHAR(255),
+  cep VARCHAR(10),
+  email VARCHAR(255),
+  telefone VARCHAR(20),
+  data_nascimento VARCHAR(10),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE medico (
+  id INT AUTO_INCREMENT,
+  nome VARCHAR(255),
+  especialidade VARCHAR(255),
+  crm VARCHAR(255),
+  email VARCHAR(255),
+  PRIMARY KEY (id)
+  );
+
+CREATE TABLE procedimento (
+  id INT AUTO_INCREMENT,
+  nome VARCHAR(255),
+  descricao TEXT,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE agendamentos (
+  id INT AUTO_INCREMENT,
+  cliente_id INT,
+  medico_id INT,
+  procedimento_id INT,
+  data varchar(10),
+  hora varchar(10),
+  PRIMARY KEY (id),
+  FOREIGN KEY (cliente_id) REFERENCES cliente (id),
+  FOREIGN KEY (medico_id) REFERENCES medico (id),
+  FOREIGN KEY (procedimento_id) REFERENCES procedimento (id)
+);
+
+
+INSERT INTO cliente (nome, endereco, cep, email, telefone, data_nascimento)
+VALUES
+    ('Ana Oliveira', 'Rua X, 789', '98765-432', 'ana@example.com', '(11) 9876-5432', '1995-03-20'),
+    ('Pedro Santos', 'Avenida Y, 456', '54321-098', 'pedro@example.com', '(22) 1234-5678', '1987-09-10'),
+    ('Mariana Silva', 'Rua Z, 789', '56789-123', 'mariana@example.com', '(33) 9876-1234', '2000-11-05'),
+    ('Carlos Souza', 'Avenida W, 123', '76543-210', 'carlos@example.com', '(44) 4321-8765', '1982-07-15'),
+    ('Julia Pereira', 'Rua V, 456', '32109-876', 'julia@example.com', '(55) 8765-4321', '1998-02-25'),
+    ('Fernando Alves', 'Avenida U, 789', '10987-654', 'fernando@example.com', '(66) 1234-5678', '1992-06-18'),
+    ('Leticia Costa', 'Rua T, 123', '43210-987', 'leticia@example.com', '(77) 9876-5432', '1997-12-01'),
+    ('Rafael Lima', 'Avenida S, 456', '21098-765', 'rafael@example.com', '(88) 2345-6789', '1989-04-30'),
+    ('Isabela Santos', 'Rua R, 789', '10987-654', 'isabela@example.com', '(99) 9876-5432', '1993-08-12'),
+    ('Gustavo Pereira', 'Avenida Q, 123', '98765-432', 'gustavo@example.com', '(11) 2345-6789', '1996-01-07');
+
+INSERT INTO medico (nome, especialidade, crm, email)
+VALUES
+    ('Dra. Laura Rodrigues', 'Ginecologia', '54321', 'laura@example.com'),
+    ('Dr. Roberto Fernandes', 'Ortopedia', '12345', 'roberto@example.com'),
+    ('Dra. Ana Maria', 'Pediatria', '98765', 'ana@example.com'),
+    ('Dr. Marcos Lima', 'Cardiologia', '76543', 'marcos@example.com'),
+    ('Dra. Camila Oliveira', 'Dermatologia', '21098', 'camila@example.com'),
+    ('Dr. Rafael Almeida', 'Urologia', '10987', 'rafael@example.com'),
+    ('Dra. Paula Souza', 'Oftalmologia', '87654', 'paula@example.com'),
+    ('Dr. Lucas Santos', 'Neurologia', '43210', 'lucas@example.com'),
+    ('Dra. Fernanda Costa', 'Endocrinologia', '12345', 'fernanda@example.com'),
+    ('Dr. Carlos Rodrigues', 'Clínico Geral', '67890', 'carlos@example.com');
+
+INSERT INTO procedimento (nome, descricao)
+VALUES
+    ('Consulta Médica', 'Avaliação geral do paciente e diagnóstico.'),
+    ('Exame de Sangue', 'Coleta de amostras de sangue para análises laboratoriais.'),
+    ('Consulta Odontológica', 'Avaliação e tratamento odontológico.'),
+    ('Raios-X', 'Imagem radiográfica para diagnóstico de condições médicas.'),
+    ('Eletrocardiograma', 'Avaliação elétrica do coração para identificação de problemas.'),
+    ('Cirurgia de Apendicite', 'Remoção do apêndice por procedimento cirúrgico.'),
+    ('Limpeza de Pele', 'Procedimento estético para limpeza e renovação da pele.'),
+    ('Avaliação Nutricional', 'Avaliação do estado nutricional e orientações.'),
+    ('Endoscopia', 'Exame visual do interior de órgãos por meio de endoscópio.'),
+    ('Terapia Física', 'Tratamento de lesões e reabilitação por meio de exercícios.');
+
+INSERT INTO agendamentos (cliente_id, medico_id, procedimento_id, data, hora)
+VALUES
+    (10, 2, 8, '2023-08-20', '10:00'),
+    (2, 3, 2, '2023-08-21', '14:30'),
+    (1, 1, 7, '2023-08-22', '09:15'),
+    (4, 5, 4, '2023-08-23', '11:45'),
+    (5, 5, 5, '2023-08-24', '16:30'),
+    (6, 2, 6, '2023-08-25', '08:00'),
+    (7, 3, 7, '2023-08-26', '13:00'),
+    (8, 1, 8, '2023-08-27', '10:30'),
+    (9, 4, 9, '2023-08-28', '15:45'),
+    (10, 5, 10, '2023-08-29', '11:00');
